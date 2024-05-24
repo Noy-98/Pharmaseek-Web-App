@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicons -->
+    <link href="../../assets/img/pharmaseek_logo.png" rel="icon">
+
+    <title>PHARMASEEK</title>
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+	<!-- My CSS -->
+	<link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link href="../../assets/css/profile.css" rel="stylesheet">
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-store'></i>
+			<span class="text">AdminHub</span>
+		</a>
+		<ul class="side-menu top">
+			<li>
+				<a href="../admin/home.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="../admin/user_control.html">
+					<i class='bx bxs-group' ></i>
+					<span class="text">User Control</span>
+				</a>
+			</li>
+            <li class="active">
+				<a href="../admin/profile.html">
+					<i class='bx bxs-user-circle'></i>
+					<span class="text">Profile</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">PHARMASEEK</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="../admin/profile.html" class="profile">
+				<img src="../../assets/img/profile_icon.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Profile Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Profile Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="../admin/home.html">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+            
+            <!-- Page content -->
+            <div class="row">
+                <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                    <div class="card card-profile shadow">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-3 order-lg-2">
+                                <div class="card-profile-image">
+                                    <a href="#">
+                                        <img src="../../assets/img/profile_icon.png"
+                                            class="rounded-circle">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0 pt-md-4">
+                            <div class="text-center">
+                                <h3>
+                                    Username<span class="font-weight-light">: your username</span>
+                                </h3>
+                                <hr class="my-4">
+                                <hr class="my-4">
+                                <div class="h5 font-weight-300">
+                                    <h3>
+                                        First Name<span class="font-weight-light">: your firstname</span>
+                                    </h3>
+                                </div>
+                                <hr class="my-4">
+                                <hr class="my-4">
+                                <div class="h5 font-weight-300">
+                                    <h3>
+                                        Last Name<span class="font-weight-light">: your lastname</span>
+                                    </h3>
+                                </div>
+                                <hr class="my-4">
+                                <hr class="my-4">
+                                <div class="h5 font-weight-300">
+                                    <h3>
+                                        Email<span class="font-weight-light">: your email</span>
+                                    </h3>
+                                </div>
+                                <hr class="my-4">
+                                <hr class="my-4">
+                                <div class="h5 font-weight-300">
+                                    <h3>
+                                        Mobile Number<span class="font-weight-light">: your mobile number</span>
+                                    </h3>
+                                </div>
+                                <hr class="my-4">
+                                <hr class="my-4">
+                                <div class="h5 font-weight-300">
+                                    <h3>
+                                        Address<span class="font-weight-light">: your address</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 order-xl-1">
+                    <div class="card bg-secondary shadow">
+                        <div class="card-header bg-white border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">My account</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <h6 class="heading-small text-muted mb-4">User information</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-username">Username</label>
+                                                <input type="text" id="input-username" class="form-control form-control-alternative"
+                                                    placeholder="Username">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-email">Email address</label>
+                                                <input type="email" id="input-email" class="form-control form-control-alternative"
+                                                    placeholder="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-first-name">First name</label>
+                                                <input type="text" id="input-first-name"
+                                                    class="form-control form-control-alternative" placeholder="First name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-last-name">Last name</label>
+                                                <input type="text" id="input-last-name"
+                                                    class="form-control form-control-alternative" placeholder="Last name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-first-name">Password</label>
+                                                <div class="password-wrapper">
+                                                    <input type="password" id="input-password" class="form-control form-control-alternative" placeholder="Password">
+                                                    <i class="bi bi-eye-slash" id="togglePassword1"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-first-name">Confirm Password</label>
+                                                <div class="password-wrapper">
+                                                    <input type="password" id="input-confirm-password" class="form-control form-control-alternative" placeholder="Confirm Password">
+                                                    <i class="bi bi-eye-slash" id="togglePassword2"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+                                <!-- Address -->
+                                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-address">Address</label>
+                                                <input id="input-address" class="form-control form-control-alternative"
+                                                    placeholder="Home Address" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group focused">
+                                                <label class="form-control-label" for="input-city">Mobile Number</label>
+                                                <input type="number" id="input-city" class="form-control form-control-alternative"
+                                                    placeholder="Mobile Number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </main>
+            <!-- MAIN -->
+	</section>
+    
+    <!-- Template Main JS File -->
+	<script src="../../assets/js/dashboard.js"></script>
+</body>
+</html>
