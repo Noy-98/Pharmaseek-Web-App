@@ -115,7 +115,7 @@
             <p class="pb-3"><em>Your Trusted Source for Quality Pharmaceuticals and Healthcare Products...</em></p>
             <p>
               Makati City, Philippines<br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Phone:</strong> +63 9543456481<br>
               <strong>Email:</strong> pharmaseek@gmail.com<br>
             </p>
             <div class="social-links mt-3">
