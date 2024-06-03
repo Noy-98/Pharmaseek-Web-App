@@ -1,3 +1,21 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'user') {
+	header('Location: ../../login.php');
+	exit();
+}
+require_once __DIR__ . '/../../forms/conn.php'; // Adjust the path if necessary
+
+// Fetch user data from the database
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT username, first_name, last_name, email, address, mobile_number, profile_picture FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user_data = $result->fetch_assoc();
+$stmt->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,25 +45,25 @@
 		</a>
 		<ul class="side-menu top">
 			<li>
-				<a href="../user/home.html">
+				<a href="../user/home.php">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
             <li>
-				<a href="#">
+				<a href="../user/products.php">
 					<i class='bx bxs-capsule'></i>
 					<span class="text">Products</span>
 				</a>
 			</li>
             <li>
-				<a href="#">
+				<a href="../user/cart.php">
 					<i class='bx bxs-cart-add' ></i>
 					<span class="text">Cart</span>
 				</a>
 			</li>
-			<li>
-				<a href="../user/profile.html">
+			<li class="active">
+				<a href="../user/profile.php">
 					<i class='bx bxs-user-circle'></i>
 					<span class="text">Profile</span>
 				</a>
@@ -53,13 +71,7 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="logout">
+				<a href="../../forms/logout_con.php" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Logout</span>
 				</a>
@@ -84,12 +96,8 @@
 			</form>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-			<a href="../user/profile.html" class="profile">
-				<img src="../../assets/img/profile_icon.png">
+			<a href="../user/profile.php" class="profile">
+				<img src="<?php echo htmlspecialchars($user_data['profile_picture']); ?>">
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -105,10 +113,31 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="../user/home.html">Home</a>
+							<a class="active" href="../user/home.php">Home</a>
 						</li>
 					</ul>
 				</div>
+			</div>
+
+            <div class="message">
+				<!-- Validation message section -->
+				<?php
+				if (session_status() == PHP_SESSION_NONE) {
+					session_start(); // Start the session if it hasn't started
+				}
+
+				// Display error messages
+				if (isset($_SESSION['error'])) {
+					echo '<div class="error_message">' . $_SESSION['error'] . '</div>';
+					unset($_SESSION['error']); // Clear the error message
+				}
+
+				// Display success messages
+				if (isset($_SESSION['success'])) {
+					echo '<div class="success_message">' . $_SESSION['success'] . '</div>';
+					unset($_SESSION['success']); // Clear the success message
+				}
+				?>
 			</div>
             
             <!-- Page content -->
@@ -119,7 +148,7 @@
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image">
                                     <a href="#">
-                                        <img src="../../assets/img/profile_icon.png"
+                                        <img src="<?php echo htmlspecialchars($user_data['profile_picture']); ?>"
                                             class="rounded-circle">
                                     </a>
                                 </div>
@@ -128,41 +157,41 @@
                         <div class="card-body pt-0 pt-md-4">
                             <div class="text-center">
                                 <h3>
-                                    Username<span class="font-weight-light">: your username</span>
+                                Username: <span class="font-weight-light"><?php echo htmlspecialchars($user_data['username']); ?></span>
                                 </h3>
                                 <hr class="my-4">
                                 <hr class="my-4">
                                 <div class="h5 font-weight-300">
                                     <h3>
-                                        First Name<span class="font-weight-light">: your firstname</span>
+                                    First Name: <span class="font-weight-light"><?php echo htmlspecialchars($user_data['first_name']); ?></span>
                                     </h3>
                                 </div>
                                 <hr class="my-4">
                                 <hr class="my-4">
                                 <div class="h5 font-weight-300">
                                     <h3>
-                                        Last Name<span class="font-weight-light">: your lastname</span>
+                                    Last Name: <span class="font-weight-light"><?php echo htmlspecialchars($user_data['last_name']); ?></span>
                                     </h3>
                                 </div>
                                 <hr class="my-4">
                                 <hr class="my-4">
                                 <div class="h5 font-weight-300">
                                     <h3>
-                                        Email<span class="font-weight-light">: your email</span>
+                                    Email: <span class="font-weight-light"><?php echo htmlspecialchars($user_data['email']); ?></span>
                                     </h3>
                                 </div>
                                 <hr class="my-4">
                                 <hr class="my-4">
                                 <div class="h5 font-weight-300">
                                     <h3>
-                                        Mobile Number<span class="font-weight-light">: your mobile number</span>
+                                    Mobile Number: <span class="font-weight-light"><?php echo htmlspecialchars($user_data['mobile_number']); ?></span>
                                     </h3>
                                 </div>
                                 <hr class="my-4">
                                 <hr class="my-4">
                                 <div class="h5 font-weight-300">
                                     <h3>
-                                        Address<span class="font-weight-light">: your address</span>
+                                    Address: <span class="font-weight-light"><?php echo htmlspecialchars($user_data['address']); ?></span>
                                     </h3>
                                 </div>
                             </div>
@@ -177,27 +206,30 @@
                                     <h3 class="mb-0">My account</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Upload Picture</a>
+                                <button type="button" class="btn btn-sm btn-primary" id="uploadButton">Upload Picture</button>
+                                    <form id="uploadForm" method="post" action="../../forms/user_upload_picture.php" enctype="multipart/form-data" style="display: none;">
+                                        <input type="file" id="profilePictureInput" name="profile_picture" accept="image/*">
+                                    </form>
                                   </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="../../forms/user_profile.php">
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-username">Username</label>
-                                                <input type="text" id="input-username" class="form-control form-control-alternative"
-                                                    placeholder="Username">
+                                                <input type="text" name="username" class="form-control form-control-alternative"
+                                                    placeholder="Username" value="<?php echo htmlspecialchars($user_data['username']); ?>" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-email">Email address</label>
-                                                <input type="email" id="input-email" class="form-control form-control-alternative"
-                                                    placeholder="email">
+                                                <input type="email" name="email" class="form-control form-control-alternative"
+                                                    placeholder="email" value="<?php echo htmlspecialchars($user_data['email']); ?>" required>
                                             </div>
                                         </div>
                                     </div>
@@ -205,24 +237,26 @@
                                         <div class="col-lg-6">
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-first-name">First name</label>
-                                                <input type="text" id="input-first-name"
-                                                    class="form-control form-control-alternative" placeholder="First name">
+                                                <input type="text" name="first_name"
+                                                    class="form-control form-control-alternative" placeholder="First name"
+                                                    value="<?php echo htmlspecialchars($user_data['first_name']); ?>" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-last-name">Last name</label>
-                                                <input type="text" id="input-last-name"
-                                                    class="form-control form-control-alternative" placeholder="Last name">
+                                                <input type="text" name="last_name"
+                                                    class="form-control form-control-alternative" placeholder="Last name"
+                                                    value="<?php echo htmlspecialchars($user_data['last_name']); ?>" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group focused">
-                                                <label class="form-control-label" for="input-first-name">Password</label>
+                                                <label class="form-control-label" for="input-first-name">New Password</label>
                                                 <div class="password-wrapper">
-                                                    <input type="password" id="input-password" class="form-control form-control-alternative" placeholder="Password">
+                                                <input type="password" name="password" class="form-control form-control-alternative" placeholder="New Password" required>
                                                     <i class="bi bi-eye-slash" id="togglePassword1"></i>
                                                 </div>
                                             </div>
@@ -231,7 +265,7 @@
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-first-name">Confirm Password</label>
                                                 <div class="password-wrapper">
-                                                    <input type="password" id="input-confirm-password" class="form-control form-control-alternative" placeholder="Confirm Password">
+                                                <input type="password" name="confirm_password" class="form-control form-control-alternative" placeholder="Confirm Password" required>
                                                     <i class="bi bi-eye-slash" id="togglePassword2"></i>
                                                 </div>
                                             </div>
@@ -246,8 +280,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-address">Address</label>
-                                                <input id="input-address" class="form-control form-control-alternative"
-                                                    placeholder="Home Address" type="text">
+                                                <input name="address" class="form-control form-control-alternative"
+                                                    placeholder="Home Address" type="text" value="<?php echo htmlspecialchars($user_data['address']); ?>" required>
                                             </div>
                                         </div>
                                     </div>
@@ -255,11 +289,14 @@
                                         <div class="col-lg-4">
                                             <div class="form-group focused">
                                                 <label class="form-control-label" for="input-city">Mobile Number</label>
-                                                <input type="number" id="input-city" class="form-control form-control-alternative"
-                                                    placeholder="Mobile Number">
+                                                <input type="text" name="mobile_number" class="form-control form-control-alternative"
+                                                    placeholder="Mobile Number" value="<?php echo htmlspecialchars($user_data['mobile_number']); ?>" required>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+                                      </div>
                                 </div>
                             </form>
                         </div>
@@ -272,5 +309,17 @@
     
     <!-- Template Main JS File -->
 	<script src="../../assets/js/dashboard.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            document.getElementById('profilePictureInput').click();
+        });
+
+        document.getElementById('profilePictureInput').addEventListener('change', function() {
+            document.getElementById('uploadForm').submit();
+        });
+    </script>
 </body>
 </html>

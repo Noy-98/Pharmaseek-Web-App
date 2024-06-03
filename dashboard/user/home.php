@@ -1,3 +1,21 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'user') {
+	header('Location: ../../login.php');
+	exit();
+}
+require_once __DIR__ . '/../../forms/conn.php'; // Adjust the path if necessary
+
+// Fetch user data from the database
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT profile_picture FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user_data = $result->fetch_assoc();
+$stmt->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,25 +46,25 @@
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="../user/home.html">
+				<a href="../user/home.php">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="../user/products.php">
 					<i class='bx bxs-capsule'></i>
 					<span class="text">Products</span>
 				</a>
 			</li>
             <li>
-				<a href="#">
+				<a href="../user/cart.php">
 					<i class='bx bxs-cart-add' ></i>
 					<span class="text">Cart</span>
 				</a>
 			</li>
 			<li>
-				<a href="../user/profile.html">
+				<a href="../user/profile.php">
 					<i class='bx bxs-user-circle'></i>
 					<span class="text">Profile</span>
 				</a>
@@ -54,13 +72,7 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="logout">
+				<a href="../../forms/logout_con.php" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Logout</span>
 				</a>
@@ -85,12 +97,8 @@
 			</form>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-			<a href="../user/profile.html" class="profile">
-				<img src="../../assets/img/profile_icon.png">
+			<a href="../user/profile.php" class="profile">
+				<img src="<?php echo htmlspecialchars($user_data['profile_picture']); ?>">
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -106,10 +114,31 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="../user/home.html">Home</a>
+							<a class="active" href="../user/home.php">Home</a>
 						</li>
 					</ul>
 				</div>
+			</div>
+
+			<div class="message">
+				<!-- Validation message section -->
+				<?php
+				if (session_status() == PHP_SESSION_NONE) {
+					session_start(); // Start the session if it hasn't started
+				}
+
+				// Display error messages
+				if (isset($_SESSION['error'])) {
+					echo '<div class="error_message">' . $_SESSION['error'] . '</div>';
+					unset($_SESSION['error']); // Clear the error message
+				}
+
+				// Display success messages
+				if (isset($_SESSION['success'])) {
+					echo '<div class="success_message">' . $_SESSION['success'] . '</div>';
+					unset($_SESSION['success']); // Clear the success message
+				}
+				?>
 			</div>
 
 			<div class="container">
@@ -122,37 +151,37 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="items-grid">
-                            <a href="#">
+                            <a href="../user/products_pain_relief_category.php">
                                 <figure>
                                     <img src="../../assets/img/product_category/pain_relief.jpg" class="rounded-circle"/>
                                     <figcaption class="item-caption">Pain Relief</figcaption>
                                 </figure>
                             </a>
-                            <a href="#">
+                            <a href="../user/products_respiratory_allergies_category.php">
                                 <figure>
                                     <img src="../../assets/img/product_category/respiratory_allergy.jpg" class="rounded-circle"/>
                                     <figcaption class="item-caption">Respiratory & Allergies</figcaption>
                                 </figure>
                             </a>
-                            <a href="#">
+                            <a href="../user/products_eye_ear_care_category.php">
                                 <figure>
                                     <img src="../../assets/img/product_category/eye_ear.jpg" class="rounded-circle"/>
                                     <figcaption class="item-caption">Eye & Ear Care</figcaption>
                                 </figure>
                             </a>
-                            <a href="#">
+                            <a href="../user/products_foot_leg_care_category.php">
                                 <figure>
                                     <img src="../../assets/img/product_category/foot_leg.jpg" class="rounded-circle"/>
                                     <figcaption class="item-caption">Foot & Leg Care</figcaption>
                                 </figure>
                             </a>
-                            <a href="#">
+                            <a href="../user/products_oral_care_category.php">
                                 <figure>
                                     <img src="../../assets/img/product_category/oral.jpg" class="rounded-circle"/>
                                     <figcaption class="item-caption">Oral Care</figcaption>
                                 </figure>
                             </a>
-                            <a href="#">
+                            <a href="../user/products_digestive_care_category.php">
                                 <figure>
                                     <img src="../../assets/img/product_category/digestive.jpg" class="rounded-circle"/>
                                     <figcaption class="item-caption">Digestive Care</figcaption>
@@ -164,7 +193,7 @@
                 <br/><br/>
                 <div class="row">
                     <div class="text-center">
-                        <a href="#" class="start-btn">Start</a>
+                        <a href="../user/products.php" class="start-btn">Start</a>
                     </div>
                 </div>
             </div>
