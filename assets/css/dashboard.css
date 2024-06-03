@@ -590,3 +590,18 @@ body {
 		min-width: 420px;
 	}
 }
+
+/* PHP Message */
+
+.error_message {
+	color: red;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+  }
+  .success_message {
+	color: green;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+  }

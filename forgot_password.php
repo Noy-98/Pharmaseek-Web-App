@@ -45,8 +45,9 @@
           <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Portal</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="signup.html">Signup</a></li>
+              <li><a href="login.php">Login</a></li>
+              <li><a href="signup.php">Signup</a></li>
+              <li><a href="forgot_password.php">Forgot Password</a></li>
             </ul>
           </li>
         </ul>
@@ -63,10 +64,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Signup Page</h2>
+          <h2>Forgot Password Page</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Signup Page</li>
+            <li>Forgot Password Page</li>
           </ol>
         </div>
 
@@ -74,11 +75,11 @@
     </section><!-- End Breadcrumbs Section -->
 
     <!-- ======= Login Section ======= -->
-    <section id="signup" class="contact">
+    <section id="login" class="contact">
       <div class="container">
         <div class="section-title" data-aos="fade-up">
           <h2>Portal</h2>
-          <p>Signup</p>
+          <p>Forgot Password</p>
         </div>
           <div class="col-lg-12 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
 
@@ -86,28 +87,14 @@
               <div class="row">
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name" required>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last name" required>
-              </div>
-              <div class="form-group mt-3">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-              </div>
-              <div class="form-group mt-3 pass">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                <i class="bi bi-eye-slash" id="togglePassword1"></i>
-              </div>
-              <div class="form-group mt-3 pass">
-                <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
-                <i class="bi bi-eye-slash" id="togglePassword2"></i>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Signup Successfully!</div>
+                <div class="sent-message">Login Successfully!</div>
               </div>
-              <div class="text-center"><button type="submit">Signup</button></div>
+              <div class="text-center"><button type="submit">Login</button></div>
             </form>
 
           </div>

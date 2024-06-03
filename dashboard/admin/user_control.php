@@ -1,3 +1,21 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'admin') {
+	header('Location: ../../login.php');
+	exit();
+}
+require_once __DIR__ . '/../../forms/conn.php'; // Adjust the path if necessary
+
+// Fetch user data from the database
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT profile_picture FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user_data = $result->fetch_assoc();
+$stmt->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,19 +43,19 @@
 		</a>
 		<ul class="side-menu top">
 			<li>
-				<a href="../admin/home.html">
+				<a href="../admin/home.php">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
 			<li class="active">
-				<a href="../admin/user_control.html">
+				<a href="../admin/user_control.php">
 					<i class='bx bxs-group' ></i>
 					<span class="text">User Control</span>
 				</a>
 			</li>
 			<li>
-				<a href="../admin/profile.html">
+				<a href="../admin/profile.php">
 					<i class='bx bxs-user-circle'></i>
 					<span class="text">Profile</span>
 				</a>
@@ -45,13 +63,7 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="logout">
+				<a href="../../forms/logout_con.php" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Logout</span>
 				</a>
@@ -76,12 +88,8 @@
 			</form>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-			<a href="../admin/profile.html" class="profile">
-				<img src="../../assets/img/profile_icon.png">
+			<a href="../admin/profile.php" class="profile">
+				<img src="<?php echo htmlspecialchars($user_data['profile_picture']); ?>">
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -97,18 +105,37 @@
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
-							<a class="active" href="../admin/home.html">Home</a>
+							<a class="active" href="../admin/home.php">Home</a>
 						</li>
 					</ul>
 				</div>
+			</div>
+
+			<div class="message">
+				<!-- Validation message section -->
+				<?php
+				if (session_status() == PHP_SESSION_NONE) {
+					session_start(); // Start the session if it hasn't started
+				}
+
+				// Display error messages
+				if (isset($_SESSION['error'])) {
+					echo '<div class="error_message">' . $_SESSION['error'] . '</div>';
+					unset($_SESSION['error']); // Clear the error message
+				}
+
+				// Display success messages
+				if (isset($_SESSION['success'])) {
+					echo '<div class="success_message">' . $_SESSION['success'] . '</div>';
+					unset($_SESSION['success']); // Clear the success message
+				}
+				?>
 			</div>
 
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
 						<h3>User Approval</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
 					</div>
 					<table>
 						<thead>
@@ -136,32 +163,18 @@
 					<div class="order">
                         <div class="head">
                             <h3>User List</h3>
-                            <i class='bx bx-search' ></i>
-                            <i class='bx bx-filter' ></i>
                         </div>
                         <table>
                             <thead>
                                 <tr>
                                     <th>User</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
                                     <th>Email</th>
 									<th>User Type</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="../../assets/img/profile_icon.png">
-										<p>Username</p>
-                                    </td>
-                                    <td>First Name</td>
-                                    <td>Last Name</td>
-                                    <td>Email Name</td>
-									<td>Admin</td>
-                                    <td><a href=""><span class="status pending">Delete</span></a></td>
-                                </tr>
+								<?php include '../../forms/admin_user_control_1.php'; ?>
                             </tbody>
                         </table>
                     </div>
