@@ -48,7 +48,7 @@ $stmt->close();
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
+            <li class="active">
 				<a href="../admin/view_products.php">
                 <i class='bx bxs-spreadsheet'></i>
 					<span class="text">View Products</span>
@@ -60,7 +60,7 @@ $stmt->close();
 					<span class="text">Add Products</span>
 				</a>
 			</li>
-			<li class="active">
+			<li>
 				<a href="../admin/user_control.php">
 					<i class='bx bxs-group' ></i>
 					<span class="text">User Control</span>
@@ -110,10 +110,10 @@ $stmt->close();
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>User Control Dashboard</h1>
+					<h1>View Products Dashboard</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">User Control Dashboard</a>
+							<a href="#">View Products Dashboard</a>
 						</li>
 						<li><i class='bx bx-chevron-right' ></i></li>
 						<li>
@@ -144,54 +144,32 @@ $stmt->close();
 				?>
 			</div>
 
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>User Approval</h3>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>User</th>
-								<th>Email</th>
-								<th>User Type</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<img src="../../assets/img/profile_icon.png">
-									<p>Username</p>
-								</td>
-								<td>User Email</td>
-								<td>Admin</td>
-                                <td><a href=""><span class="status process">Pending</span></a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="todo">
-					<div class="order">
+			<!-- Page content -->
+            <div class="table-data">
+                <div class="todo">
+                    <div class="order">
                         <div class="head">
-                            <h3>User List</h3>
+                            <h3>Product List</h3>
                         </div>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>User</th>
-                                    <th>Email</th>
-									<th>User Type</th>
+                                    <th>Product Name</th>
+                                    <th>Product Price</th>
+                                    <th>Product Category</th>
+									<th>Product Stock</th>
+									<th>Product Pcs</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-								<?php include '../../forms/admin_user_control_1.php'; ?>
+                                <?php include '../../forms/admin_view_products.php'; ?>
                             </tbody>
                         </table>
                     </div>
-				</div>
-			</div>
+                </div>
+            </div>
+
 		</main>
 		<!-- MAIN -->
 	</section>

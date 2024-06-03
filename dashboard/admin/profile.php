@@ -50,6 +50,18 @@ $stmt->close();
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
+            <li>
+				<a href="../admin/view_products.php">
+                <i class='bx bxs-spreadsheet'></i>
+					<span class="text">View Products</span>
+				</a>
+			</li>
+            <li>
+				<a href="../admin/add_products.php">
+                <i class='bx bxs-add-to-queue'></i>
+					<span class="text">Add Products</span>
+				</a>
+			</li>
 			<li>
 				<a href="../admin/user_control.php">
 					<i class='bx bxs-group' ></i>

@@ -11,15 +11,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'user') {
 }
 
 // Fetch user data from the database
-$sql = "SELECT id, p_picture, p_name, p_price, p_category FROM products";
+$sql = "SELECT id, p_name, p_price, p_category FROM products WHERE p_category = 'Oral Care'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>
-                <td>
-                    <img src='".htmlspecialchars($row['p_picture'])."'>
-                </td>
                 <td>".htmlspecialchars($row['p_name'])."</td>
                 <td>".htmlspecialchars($row['p_price'])."</td>
                 <td>".htmlspecialchars($row['p_category'])."</td>

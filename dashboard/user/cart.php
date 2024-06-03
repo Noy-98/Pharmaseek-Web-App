@@ -153,7 +153,6 @@ $stmt->close();
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Product Picture</th>
                                     <th>Product Name</th>
                                     <th>Product Price</th>
                                     <th>Product Category</th>

@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt_update->close();
 }
 
-$db_con->close();
+$conn->close();
 
 header('Location: ../dashboard/user/profile.php');
 exit();
