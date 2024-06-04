@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'user') {
 }
 
 // Fetch user data from the database
-$sql = "SELECT id, p_name, p_price, p_category FROM cart";
+$sql = "SELECT id, p_name, p_price, p_category, order_date FROM cart";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -20,6 +20,7 @@ if ($result->num_rows > 0) {
                 <td>".htmlspecialchars($row['p_name'])."</td>
                 <td>".htmlspecialchars($row['p_price'])."</td>
                 <td>".htmlspecialchars($row['p_category'])."</td>
+                <td>".htmlspecialchars($row['order_date'])."</td>
                 <td>
                     <a href='../../forms/user_delete_cart.php?id=".urlencode($row['id'])."' onclick='return confirm(\"Are you sure you want to delete this item?\");'>
                         <span class='status pending'>Delete</span>

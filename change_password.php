@@ -67,10 +67,10 @@ session_start(); // Start the session
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Login Page</h2>
+          <h2>Change Password Page</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Login Page</li>
+            <li>Change Password Page</li>
           </ol>
         </div>
 
@@ -82,21 +82,25 @@ session_start(); // Start the session
       <div class="container">
         <div class="section-title" data-aos="fade-up">
           <h2>Portal</h2>
-          <p>Login</p>
+          <p>Change Password</p>
         </div>
-        <div class="col-lg-12 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
+          <div class="col-lg-12 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
 
-          <form method="post" action="forms/login_con.php" class="php-email-form">
-            <div class="row">
-            </div>
-            <div class="form-group mt-3">
-              <input type="email" class="form-control" name="email" placeholder="Email" required>
-            </div>
-            <div class="form-group mt-3 pass">
-              <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            <form method="post" action="forms/change_password_con.php" class="php-email-form">
+              <div class="row">
+              </div>
+              <div class="form-group mt-3">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+              </div>
+              <div class="form-group mt-3 pass">
+              <input type="password" class="form-control" name="password" id="password" placeholder="New Password" required>
               <i class="bi bi-eye-slash" id="togglePassword1"></i>
             </div>
-            <div class="my-3">
+            <div class="form-group mt-3 pass">
+              <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+              <i class="bi bi-eye-slash" id="togglePassword2"></i>
+            </div>
+              <div class="my-3">
               <!-- Validation message section -->
               <?php
               // Check if there are any error messages
@@ -112,77 +116,77 @@ session_start(); // Start the session
               }
               ?>
             </div>
-            <div class="text-center"><button type="submit">Login</button></div>
-          </form>
+              <div class="text-center"><button type="submit">Submit</button></div>
+            </form>
 
-        </div>
+          </div>
       </div>
     </section><!-- End Login Section -->
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
+ <!-- ======= Footer ======= -->
+ <footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
 
-          <div class="col-lg-4 col-md-6">
-            <div class="footer-info">
-              <h3>PHARMASEEK</h3>
-              <p class="pb-3"><em>Your Trusted Source for Quality Pharmaceuticals and Healthcare Products...</em></p>
-              <p>
-                Makati City, Philippines<br><br>
-                <strong>Phone:</strong> +63 9543456481<br>
-                <strong>Email:</strong> pharmaseek@gmail.com<br>
-              </p>
-              <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info">
+            <h3>PHARMASEEK</h3>
+            <p class="pb-3"><em>Your Trusted Source for Quality Pharmaceuticals and Healthcare Products...</em></p>
+            <p>
+              Makati City, Philippines<br><br>
+              <strong>Phone:</strong> +63 9543456481<br>
+              <strong>Email:</strong> pharmaseek@gmail.com<br>
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
           </div>
+        </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.html#hero">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="index.html#contact">Contact</a></li>
-            </ul>
-          </div>
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html#hero">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Medication Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Over The Counter</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Cards & Gifts</a></li>
-            </ul>
-          </div>
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Medication Services</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Over The Counter</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Cards & Gifts</a></li>
+          </ul>
+        </div>
 
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Send a newsletter at Pharmaseek Online Store to receive the latest updates on promotions, health tips, and new arrivals</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
+        <div class="col-lg-4 col-md-6 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Send a newsletter at Pharmaseek Online Store to receive the latest updates on promotions, health tips, and new arrivals</p>
+          <form action="" method="post">
+            <input type="email" name="email"><input type="submit" value="Subscribe">
+          </form>
 
         </div>
-      </div>
-    </div>
 
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>PHARMASEEK</span></strong>. All Rights Reserved
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>PHARMASEEK</span></strong>. All Rights Reserved
+    </div>
+  </div>
+</footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
@@ -193,7 +197,6 @@ session_start(); // Start the session
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

@@ -10,6 +10,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'user') {
     exit();
 }
 
+// Get the user ID from the session
+$user_id = $_SESSION['user_id'];
+
 // Get the product ID from the URL
 if (isset($_GET['id'])) {
     $product_id = intval($_GET['id']);
@@ -24,10 +27,11 @@ if (isset($_GET['id'])) {
     $stmt->close();
 
     if ($product) {
+
         // Insert product into the cart
-        $sql = "INSERT INTO cart (p_name, p_price, p_category) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO cart (p_name, p_price, p_category, user_id) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $product['p_name'], $product['p_price'], $product['p_category']);
+        $stmt->bind_param("sssi", $product['p_name'], $product['p_price'], $product['p_category'], $user_id);
         if ($stmt->execute()) {
             $_SESSION['success'] = "Product added to cart successfully.";
         } else {

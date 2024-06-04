@@ -1,3 +1,6 @@
+<?php
+session_start(); // Start the session
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,18 +86,29 @@
         </div>
           <div class="col-lg-12 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
 
-            <form action="" method="post" role="form" class="php-email-form">
+            <form method="post" action="forms/forgot_password_con.php" class="php-email-form">
               <div class="row">
               </div>
               <div class="form-group mt-3">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Login Successfully!</div>
-              </div>
-              <div class="text-center"><button type="submit">Login</button></div>
+              <!-- Validation message section -->
+              <?php
+              // Check if there are any error messages
+              if (isset($_SESSION['error'])) {
+                echo '<div class="error_message">' . $_SESSION['error'] . '</div>';
+                unset($_SESSION['error']); // Clear the error message
+              }
+
+              // Check if there are any success messages
+              if (isset($_SESSION['success'])) {
+                echo '<div class="success_message">' . $_SESSION['success'] . '</div>';
+                unset($_SESSION['success']); // Clear the success message
+              }
+              ?>
+            </div>
+              <div class="text-center"><button type="submit">Submit</button></div>
             </form>
 
           </div>
@@ -175,7 +189,6 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

@@ -152,22 +152,17 @@ $stmt->close();
 					<table>
 						<thead>
 							<tr>
-								<th>User</th>
+								<th>User ID</th>
 								<th>Email</th>
-								<th>User Type</th>
 								<th>Status</th>
+								<th>Request Date</th>
+								<th></th>
+                        		<th></th>
+                        		<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<img src="../../assets/img/profile_icon.png">
-									<p>Username</p>
-								</td>
-								<td>User Email</td>
-								<td>Admin</td>
-                                <td><a href=""><span class="status process">Pending</span></a></td>
-							</tr>
+							<?php include '../../forms/admin_user_control_2.php'; ?>
 						</tbody>
 					</table>
 				</div>

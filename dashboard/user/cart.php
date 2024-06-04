@@ -156,6 +156,7 @@ $stmt->close();
                                     <th>Product Name</th>
                                     <th>Product Price</th>
                                     <th>Product Category</th>
+                                    <th>Order Date</th>
                                     <th></th>
                                 </tr>
                             </thead>

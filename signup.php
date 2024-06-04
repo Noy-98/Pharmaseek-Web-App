@@ -99,11 +99,11 @@ session_start(); // Start the session
               <input type="email" class="form-control" name="email" placeholder="Email" required>
             </div>
             <div class="form-group mt-3 pass">
-              <input type="password" class="form-control" name="password" placeholder="Password" required>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
               <i class="bi bi-eye-slash" id="togglePassword1"></i>
             </div>
             <div class="form-group mt-3 pass">
-              <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+              <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
               <i class="bi bi-eye-slash" id="togglePassword2"></i>
             </div>
             <div class="my-3">
