@@ -251,6 +251,23 @@ body {
 	border-radius: 0 36px 36px 0;
 	cursor: pointer;
 }
+#content .search-results {
+	position: absolute;
+	top: 100%; /* Aligns the dropdown at the bottom of the search box */
+	left: 0;
+	background: white;
+	max-height: 200px;
+	overflow-y: auto;
+	width: 100%;
+	z-index: 1000;
+  }
+  #content .search-results div {
+	padding: 8px;
+	cursor: pointer;
+  }
+  #content .search-results div:hover {
+	background-color: #f1f1f1;
+  }
 #content nav .notification {
 	font-size: 20px;
 	position: relative;

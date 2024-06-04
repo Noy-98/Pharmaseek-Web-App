@@ -102,10 +102,11 @@ $stmt_cart_count->close();
 		<nav>
 			<i class='bx bx-menu'></i>
 			<a href="#" class="nav-link">PHARMASEEK</a>
-			<form action="#">
+			<form method="POST" action="#" onsubmit="return false;">
 				<div class="form-input">
-					<input type="search" placeholder="Search...">
+					<input type="search" id="search-input" name="query" placeholder="Search..." title="Enter search keyword" oninput="filterSearch()">
 					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+					<div id="search-results" class="search-results"></div>
 				</div>
 			</form>
 			<input type="checkbox" id="switch-mode" hidden>
@@ -219,6 +220,33 @@ $stmt_cart_count->close();
 
 
 	<script src="../../assets/js/dashboard.js"></script>
+	<script>
+    const sidebarItems = [
+      { name: 'Home', url: '../../dashboard/admin/home.php' },
+      { name: 'View Products', url: '../../dashboard/admin/view_products.php' },
+      { name: 'Add Products', url: '../../dashboard/admin/add_products.php' },
+      { name: 'User Control', url: '../../dashboard/admin/user_control.php' },
+      { name: 'Profile', url: '../../dashboard/admin/profile.php' }
+    ];
+
+    function filterSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const resultsContainer = document.getElementById('search-results');
+      resultsContainer.innerHTML = '';
+
+      if (query) {
+        const filteredItems = sidebarItems.filter(item => item.name.toLowerCase().includes(query));
+        filteredItems.forEach(item => {
+          const div = document.createElement('div');
+          div.textContent = item.name;
+          div.onclick = () => {
+            window.location.href = item.url;
+          };
+          resultsContainer.appendChild(div);
+        });
+      }
+    }
+  </script>
 </body>
 
 </html>
